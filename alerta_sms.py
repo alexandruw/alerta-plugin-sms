@@ -39,7 +39,7 @@ class ServiceIntegration(PluginBase):
         self._severities.update(SMS_SEVERITY_MAP)
 
         super(ServiceIntegration, self).__init__(name)
-\\
+
     def pre_receive(self, alert):
         return alert
 
