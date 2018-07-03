@@ -44,10 +44,9 @@ class ServiceIntegration(PluginBase):
         return alert
 
     def _sms_prepare_payload(self, alert, status=None, text=None):
-        summary = "*[%s] %s %s - _%s on %s_* <%s/#/alert/%s|%s>" % (
+        summary = "*[%s] %s %s - _%s on %s_* " % (
             (status if status else alert.status).capitalize(), alert.environment, alert.severity.capitalize(
-            ), alert.event, alert.resource, DASHBOARD_URL,
-            alert.id, alert.get_id(short=True)
+            ), alert.event, alert.resource)
         )
 
         payload = {
@@ -58,8 +57,8 @@ class ServiceIntegration(PluginBase):
 
     def post_receive(self, alert):
 
-        if alert.repeat:
-            return
+#        if alert.repeat:
+#            return
 
         payload = self._sms_prepare_payload(alert)
 
