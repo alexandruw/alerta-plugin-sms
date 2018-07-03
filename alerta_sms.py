@@ -50,9 +50,9 @@ class ServiceIntegration(PluginBase):
             alert.id, alert.get_id(short=True)
         )
 
-	payload = {
-                "text": summary,
-            }
+        payload = {
+            "text": summary
+        }
 
         return payload
 
