@@ -66,7 +66,7 @@ class ServiceIntegration(PluginBase):
         LOG.debug('sms payload: %s', payload)
 
         try:
-            r = requests.post(SMS_WEBHOOK_URL,
+            r = requests.post(SMS_URL,
                               data=json.dumps(payload), timeout=2)
         except Exception as e:
             raise RuntimeError("sms connection error: %s", e)
@@ -81,7 +81,7 @@ class ServiceIntegration(PluginBase):
 
         LOG.debug('sms payload: %s', payload)
         try:
-            r = requests.post(sms_WEBHOOK_URL,
+            r = requests.post(SMS_URL,
                               data=json.dumps(payload), timeout=2)
         except Exception as e:
             raise RuntimeError("sms connection error: %s", e)
