@@ -63,14 +63,14 @@ class ServiceIntegration(PluginBase):
 
         payload = self._sms_prepare_payload(alert)
 
-        LOG.debug('sms payload: %s', payload)
+        LOG.info('sms payload: %s', payload)
 
         try:
             r = requests.post(SMS_URL,data=json.dumps(payload), timeout=2)
         except Exception as e:
             raise RuntimeError("sms connection error: %s", e)
 
-        LOG.debug('sms response: %s', r.status_code)
+        LOG.info('sms response: %s', r.status_code)
 
     def status_change(self, alert, status, text):
         if SMS_SEND_ON_ACK == False or status not in ['ack', 'assign']:
@@ -78,12 +78,12 @@ class ServiceIntegration(PluginBase):
 
         payload = self._sms_prepare_payload(alert, status, text)
 
-        LOG.debug('sms payload: %s', payload)
+        LOG.info('sms payload: %s', payload)
         try:
             r = requests.post(SMS_URL,
                               data=json.dumps(payload), timeout=2)
         except Exception as e:
             raise RuntimeError("sms connection error: %s", e)
 
-        LOG.debug('sms response: %s', r.status_code)
+        LOG.info('sms response: %s', r.status_code)
 
